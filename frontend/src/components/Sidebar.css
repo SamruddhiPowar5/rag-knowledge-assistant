@@ -1,0 +1,225 @@
+.sidebar {
+  width: 280px;
+  min-width: 280px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar-header {
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--accent-glow);
+  border: 1px solid rgba(124, 106, 247, 0.3);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.logo-name {
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+.logo-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.sidebar-nav {
+  padding: 16px 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.nav-btn:hover {
+  background: var(--surface-2);
+  color: var(--text-primary);
+}
+
+.nav-btn.active {
+  background: var(--accent-glow);
+  color: var(--accent);
+  border: 1px solid rgba(124, 106, 247, 0.25);
+}
+
+.stats-card {
+  margin: 16px 12px;
+  padding: 14px 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.stats-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.stats-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.stats-row span:first-child {
+  font-family: 'DM Mono', monospace;
+  font-size: 20px;
+  color: var(--accent);
+}
+
+.stats-unit {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.docs-section {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+}
+
+.docs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 4px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.docs-count {
+  background: var(--surface-3);
+  color: var(--text-secondary);
+  padding: 2px 7px;
+  border-radius: 20px;
+  font-size: 10px;
+}
+
+.docs-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 12px;
+}
+
+.docs-empty {
+  text-align: center;
+  padding: 24px 16px;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.doc-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s;
+  animation: fadeUp 0.3s ease;
+}
+
+.doc-item:hover { background: var(--surface-2); }
+
+.doc-icon {
+  font-size: 14px;
+  color: var(--accent-dim);
+  min-width: 16px;
+}
+
+.doc-info { flex: 1; min-width: 0; }
+
+.doc-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.doc-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.doc-delete {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: all 0.15s;
+}
+
+.doc-item:hover .doc-delete { opacity: 1; }
+.doc-delete:hover { background: rgba(248,113,113,0.1); color: var(--error); }
+
+.sidebar-footer {
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+}
+
+.powered-by {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+  text-align: center;
+}

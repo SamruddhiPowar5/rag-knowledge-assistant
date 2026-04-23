@@ -1,145 +1,37 @@
-# 🔮 KnowledgeAI — RAG Based Knowledge Assistant
+# KnowledgeAI — RAG Knowledge Assistant
 
-> Upload your documents. Ask anything. Get AI-powered answers with source citations.
+Upload documents. Ask questions. Get AI-powered answers.
 
----
-
-## 🤔 What is this project?
-
-This is an AI-powered Knowledge Assistant that lets you **upload your own documents** and **ask questions** about them in plain English.
-
-Instead of manually reading through hundreds of pages, just upload your files and ask:
-- *"What are the key findings?"*
-- *"What risks are mentioned in the document?"*
-- *"Summarize the main points"*
-
-And the AI will find the relevant parts and give you a clear answer with sources.
+🔗 **[Live Demo](https://rag-knowledge-assistant-seven.vercel.app)**
 
 ---
 
-## 🧠 How Does It Work?
+## How It Works
 
-### Step 1 — You Upload a Document
-You drag and drop a PDF, TXT, CSV, or Markdown file into the app.
-
-### Step 2 — The App Reads and Splits It
-The document gets split into small pieces called **chunks**.
-For example a 10 page PDF becomes ~30 small chunks of text.
-
-```
-"This is a long document about AI risks and challenges..."
-        ↓
-chunk 1: "This is a long document about AI..."
-chunk 2: "...risks and challenges in modern..."
-chunk 3: "...systems require careful oversight..."
-```
-
-### Step 3 — Each Chunk Gets Converted to Numbers
-Every chunk is sent to **OpenAI** which converts the text into a list of numbers called an **embedding**. These numbers represent the *meaning* of the text.
-
-```
-"AI risks and challenges" → [0.23, 0.87, 0.11, 0.54 ...] (1536 numbers)
-```
-
-### Step 4 — Numbers Are Stored in Pinecone
-All those numbers are saved in **Pinecone** which is a special database built for searching by meaning.
+1. Upload a PDF, TXT, CSV or Markdown file
+2. Ask a question about it
+3. GPT-4o answers using only your document with source citations
 
 ---
 
-### Step 5 — You Ask a Question
-You type a question like *"What are the AI risks?"* in the chat.
+## Tech Used
 
-### Step 6 — Your Question Gets Converted Too
-Your question also gets converted into numbers the same way.
-
-```
-"What are the AI risks?" → [0.21, 0.83, 0.14, 0.51 ...]
-```
-
-### Step 7 — Pinecone Finds the Most Relevant Chunks
-Pinecone compares your question's numbers with all the stored chunk numbers and finds the **top 5 most similar chunks**.
-
-This is called **Semantic Search** — it searches by meaning not just keywords. So even if you ask *"What are the dangers?"* it will find chunks about *"risks"* because they mean the same thing.
-
-### Step 8 — GPT-4o Writes the Answer
-The top 5 chunks are sent to **GPT-4o** along with your question:
-
-```
-"Here are the relevant parts of the document:
- [chunk 1] [chunk 2] [chunk 3] [chunk 4] [chunk 5]
-
- Now answer this: What are the AI risks?"
-```
-
-GPT-4o reads those chunks and writes a clear, accurate answer.
-
-### Step 9 — You See the Answer + Sources
-The answer appears in the chat along with the source citations showing exactly which parts of which document were used.
+- FastAPI · React · GPT-4o · Pinecone
 
 ---
 
-## 🔄 Complete Flow Diagram
+## Run Locally
 
-```
-                    UPLOAD FLOW
-                    ───────────
-You upload PDF
-      ↓
-App reads the file
-      ↓
-Splits into chunks (1000 characters each)
-      ↓
-OpenAI converts each chunk to numbers (embeddings)
-      ↓
-Numbers saved in Pinecone ✅
+```bash
+# Backend
+cd backend && pip install -r requirements.txt
+cp .env.example .env
+uvicorn main:app --reload --port 8000
 
-
-                    QUERY FLOW
-                    ──────────
-You type a question
-      ↓
-OpenAI converts question to numbers
-      ↓
-Pinecone finds top 5 most similar chunks
-      ↓
-Chunks + Question sent to GPT-4o
-      ↓
-GPT-4o writes answer using only those chunks
-      ↓
-Answer + Sources shown in chat ✅
+# Frontend
+cd frontend && npm install && npm run dev
 ```
 
 ---
 
-## 🗂️ Supported File Types
-
-| File Type | Example Use |
-|---|---|
-| PDF | Research papers, reports, books |
-| TXT | Notes, articles, documentation |
-| Markdown | Technical docs, wikis |
-| CSV | Data files, spreadsheets |
-
----
-
-## 💡 Why is This Useful?
-
-Without this app → You manually read 100 pages to find one answer.
-
-With this app → You ask a question and get the answer in seconds with the exact source.
-
-This technique is called **RAG (Retrieval Augmented Generation)** and it is used by companies like Google, Microsoft, and many startups to build AI assistants on top of their own private data.
-
----
-
-## 🛠️ Tech Used
-
-| What | Tool |
-|---|---|
-| Frontend | React + Vite |
-| Backend | Python + FastAPI |
-| AI Answers | GPT-4o by OpenAI |
-| Embeddings | text-embedding-3-small by OpenAI |
-| Vector Search | Pinecone |
-| PDF Reading | pdfplumber |
-| Text Splitting | LangChain |
+Built by [Samruddhi Powar](https://github.com/SamruddhiPowar5)

@@ -2,7 +2,7 @@ import io
 import csv
 import uuid
 import pdfplumber
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # Splits text into chunks of 1000 characters with 200 overlap
 splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
